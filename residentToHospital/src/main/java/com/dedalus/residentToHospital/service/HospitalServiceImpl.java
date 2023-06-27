@@ -7,37 +7,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dedalus.residentToHospital.entity.HospitalEntity;
-import com.dedalus.residentToHospital.exception.HospitalNotFoundException;
-import com.dedalus.residentToHospital.exception.ResidentNotFoundException;
 import com.dedalus.residentToHospital.entity.HospitalEntity;
 import com.dedalus.residentToHospital.repo.HospitalRepository;
 
 @Service
 public class HospitalServiceImpl implements HospitalService{
 
+	//IMPLEMENTING ALL THE METHODS DECLARED IN HOSPITALSERVICE INTERFACE
+	
 	@Autowired
 	HospitalRepository hospitalrepository;
 
 	@Override
-	public HospitalEntity createHospital(HospitalEntity hospital) {
+	public HospitalEntity createHospital(HospitalEntity hospital) {				//INSERTING RECORD INTO TABLE
 		return hospitalrepository.save(hospital);
 	}
 
 	@Override
-	public HospitalEntity getHospitalById(long hospitalId) {
+	public HospitalEntity getHospitalById(long hospitalId) {				//SEARCH RECORD BY ID
 		// TODO Auto-generated method stub
 		Optional<HospitalEntity> optionalhospital = hospitalrepository.findById(hospitalId);
 		return optionalhospital.get();
 	}
 
 	@Override
-	public List<HospitalEntity> getAllHospital() {
+	public List<HospitalEntity> getAllHospital() {							//LISTING ALL RECORDS
 		// TODO Auto-generated method stub
 		return (List<HospitalEntity>) hospitalrepository.findAll();
 	}
 
 	@Override
-	public HospitalEntity updateHospital(HospitalEntity hospital) {
+	public HospitalEntity updateHospital(HospitalEntity hospital) {				//UPDATING RECORD IN THE TABLE
 		// TODO Auto-generated method stub
 		
 		HospitalEntity existingHospital = hospitalrepository.findById(hospital.getHospitalId()).get();
@@ -50,17 +50,11 @@ public class HospitalServiceImpl implements HospitalService{
 
 
 	@Override
-	public void deleteHospital(Long hospitalId) {
-		// TODO Auto-generated method stub
-		 
-		 if(hospitalrepository.findById(hospitalId).isEmpty())
-			{
-				throw new HospitalNotFoundException();
-			}
-			else
-		 hospitalrepository.deleteById(hospitalId);
-		
-	}
+		public void deleteHospital(Long hospitalId) {					//DELETING RECORD BY ID
+			// TODO Auto-generated method stub
+			 hospitalrepository.deleteById(hospitalId);
+			
+		}
 	
 	
 	

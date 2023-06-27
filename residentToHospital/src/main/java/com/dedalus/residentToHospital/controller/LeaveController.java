@@ -26,6 +26,8 @@ public class LeaveController {
 	@Autowired
 	LeaveService leaveservice;
 
+	//CREATING REST END POINTS TO PERFORM CRUD OPERATIONS ON LEAVE TABLE
+	
 	@PostMapping("/createLeave")
     public LeaveEntity createLeave(@RequestBody LeaveEntity leave)
 

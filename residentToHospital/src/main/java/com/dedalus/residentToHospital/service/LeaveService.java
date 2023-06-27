@@ -6,6 +6,7 @@ import com.dedalus.residentToHospital.entity.LeaveEntity;
 
 public interface LeaveService {
 
+	//DECLARING ALL THE METHODS TO PERFORM CRUD OPERATIONS ON LEAVE TABLE
 	
 	LeaveEntity createLeave(LeaveEntity leave);
 	

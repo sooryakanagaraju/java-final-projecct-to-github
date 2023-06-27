@@ -6,37 +6,27 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
-
 import com.dedalus.residentToHospital.entity.ResidentEntity;
-import com.dedalus.residentToHospital.exception.ResidentAlreadyExistsException;
-import com.dedalus.residentToHospital.exception.ResidentNotFoundException;
 import com.dedalus.residentToHospital.repo.ResidentRepository;
 
 @Service
 public class ResidentServiceImpl implements ResidentService {
+	
+	//IMPLEMENTING ALL THE METHODS DECLARED IN RESIDENTSERVICE INTERFACE
+	
 
 	@Autowired
 	ResidentRepository residentrepository;
 	
 	
 	@Override
-	public ResidentEntity createResident(ResidentEntity resident) throws ResidentAlreadyExistsException 
-	{
-		if(residentrepository.findByresidentContactno(resident.getResidentContactno()).isPresent())
-		{
-			throw new ResidentAlreadyExistsException();
-		}
-		else
-		{
-			  return residentrepository.save(resident);
-		}
-	  
+	public ResidentEntity createResident(ResidentEntity resident) {			//INSERTING RECORD INTO TABLE
+	    return residentrepository.save(resident);
 		// TODO Auto-generated method stub		
 	}
 
 	@Override
-	public ResidentEntity getResidentById(long residentId) {
+	public ResidentEntity getResidentById(long residentId) {				//SEARCH RECORD BY ID
 		// TODO Auto-generated method stub
 		Optional<ResidentEntity> optionalresident = residentrepository.findById(residentId);
 		return optionalresident.get();
@@ -45,13 +35,13 @@ public class ResidentServiceImpl implements ResidentService {
 
 	@Override
 	
-	public List<ResidentEntity> getAllResident() {
+	public List<ResidentEntity> getAllResident() {							//LISTING ALL THE RECORDS
 		// TODO Auto-generated method stub
 		return (List<ResidentEntity>) residentrepository.findAll();
 	}
 
 	@Override
-	public ResidentEntity updateResident(ResidentEntity resident) {
+	public ResidentEntity updateResident(ResidentEntity resident) {						//UPDATING RECORD BY ID
 		// TODO Auto-generated method stub
 //		if(residentrepository.findById(resident.getResidentId()).isEmpty())
 //		{
@@ -99,26 +89,12 @@ public class ResidentServiceImpl implements ResidentService {
 
 	
 	@Override
-	public void deleteResident(Long residentId) throws ResidentNotFoundException {
+	public void deleteResident(Long residentId) {						//DELETING RECORD BY ID
 		// TODO Auto-generated method stub
-		if(residentrepository.findById(residentId).isEmpty())
-			{
-				throw new ResidentNotFoundException();
-			}
-			else
 		 residentrepository.deleteById(residentId);
 		
 		
 	}
-
-	@Override
-	public List<ResidentEntity> findByOrderByresidentNameAsc() {
-		// TODO Auto-generated method stub
-		
-		return (List<ResidentEntity>) residentrepository.findAll(Sort.by(Sort.Direction.ASC, "residentName"));
-	}
-
-
 	
 	
 //	public void deletePatient(Long patientId) throws PatientNotFoundException{

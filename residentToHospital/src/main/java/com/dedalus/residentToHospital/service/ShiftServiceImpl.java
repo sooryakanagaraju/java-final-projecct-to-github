@@ -14,23 +14,26 @@ import com.dedalus.residentToHospital.repo.ShiftRepository;
 @Service
 public class ShiftServiceImpl implements ShiftService {
 	
+	//IMPLEMENTING ALL THE METHODS DECLARED IN SHIFTSERVICE INTERFACE
+	
+	
 	@Autowired
 	ShiftRepository shiftrepository;
 
 	@Override
-	public ShiftEntity createShift(ShiftEntity shiftentity) {
-		// TODO Auto-generated method stub
+	public ShiftEntity createShift(ShiftEntity shiftentity) {		//INSERTING RECORD INTO TABLE
+		// TODO Auto-generated method stub	
 		return shiftrepository.save(shiftentity);
 	}
 
 	@Override
-	public List<ShiftEntity> getAllShifts() {
+	public List<ShiftEntity> getAllShifts() {						//LISTING ALL THE RECORDS
 		// TODO Auto-generated method stub
 		return (List<ShiftEntity>) shiftrepository.findAll();	
 	}
 
 	@Override
-	public ShiftEntity updateShift(ShiftEntity shift) {
+	public ShiftEntity updateShift(ShiftEntity shift) {				//UPDATING RECORD BY ID
 		// TODO Auto-generated method stub
 		ShiftEntity existingshift = shiftrepository.findById(shift.getShiftId()).get();
 		existingshift.setResidentShiftTime(shift.getResidentShiftTime());
@@ -39,7 +42,7 @@ public class ShiftServiceImpl implements ShiftService {
 	}
 
 	@Override
-	public void deleteShift(Long shiftId) {
+	public void deleteShift(Long shiftId) {							//DELETING RECORD BY ID
 		// TODO Auto-generated method stub
 		
 	}

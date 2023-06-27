@@ -6,6 +6,7 @@ import com.dedalus.residentToHospital.entity.ResidentEntity;
 import com.dedalus.residentToHospital.entity.ShiftEntity;
 
 public interface ShiftService {
+	//DECLARING ALL THE METHODS TO PERFORM CRUD OPERATIONS ON SHIFT TABLE
 	
 	ShiftEntity createShift( ShiftEntity shiftentity);
 

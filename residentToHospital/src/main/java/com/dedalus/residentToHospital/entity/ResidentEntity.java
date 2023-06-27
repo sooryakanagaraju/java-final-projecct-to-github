@@ -45,7 +45,7 @@ public class ResidentEntity {
 	@Column(nullable = false)
 	private String residentGender;
 	
-	@Column(nullable=false,unique=true)
+	@Column
 	private String residentContactno;
 	
 	@Column

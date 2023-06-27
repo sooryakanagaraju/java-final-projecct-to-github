@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,10 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dedalus.residentToHospital.entity.HospitalEntity;
 import com.dedalus.residentToHospital.entity.ResidentEntity;
-import com.dedalus.residentToHospital.exception.HospitalAlreadyExistsException;
-import com.dedalus.residentToHospital.exception.HospitalNotFoundException;
-import com.dedalus.residentToHospital.exception.ResidentAlreadyExistsException;
-import com.dedalus.residentToHospital.exception.ResidentNotFoundException;
 import com.dedalus.residentToHospital.service.HospitalService;
 
 @RestController
@@ -28,26 +23,22 @@ import com.dedalus.residentToHospital.service.HospitalService;
 public class HospitalController {
 
 	@Autowired
+	HospitalEntity hospital;
+	
+	@Autowired
 	HospitalService hospitalService;
 	
+	//CREATING REST END POINTS TO PERFORM CRUD OPERATIONS ON HOSPITAL TABLE
+	
 	@PostMapping("/createHospital")
-	 public HospitalEntity createHospital(@RequestBody HospitalEntity hospital) throws HospitalAlreadyExistsException
+	 public HospitalEntity createHospital(@RequestBody HospitalEntity hospital)
 	 {
 		return hospitalService.createHospital(hospital);
 	 }
 	
 	
 	
-//	@Autowired
-//	ResidentService residentservice;
-//
-//	@PostMapping("/createResident")
-//	
-//    public ResidentEntity createResident(@RequestBody ResidentEntity resident)
-//    {
-//        return residentservice.createResident(resident);
-//
-//    }
+
 	
 	@GetMapping("searchHospital/{id}")
 	public ResponseEntity<HospitalEntity> getHospitalById(@PathVariable("id") Long hospitalId)
@@ -78,11 +69,4 @@ public class HospitalController {
 		hospitalService.deleteHospital(hospitalId);
 		return new ResponseEntity<>("hospital successfully deleted!",HttpStatus.OK);
 	}
-	
-	
-	@ExceptionHandler(value = HospitalNotFoundException.class)
-    public ResponseEntity<String> handleHospitalNotFoundException(HospitalNotFoundException hospitalNotFoundException) {
-        return new ResponseEntity<>(hospitalNotFoundException.getMessage(), HttpStatus.NOT_FOUND);
-    }
-	
 }

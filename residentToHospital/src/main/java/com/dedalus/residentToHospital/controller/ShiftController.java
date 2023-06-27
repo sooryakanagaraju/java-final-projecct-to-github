@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dedalus.residentToHospital.entity.ShiftEntity;
@@ -19,11 +18,12 @@ import com.dedalus.residentToHospital.service.ShiftService;
 
 
 @RestController
-@RequestMapping("api/shift")
 public class ShiftController {
 	@Autowired
 	ShiftService shiftservice;
 
+	//CREATING REST END POINTS TO PERFORM CRUD OPERATIONS ON SHIFT TABLE
+	
 	@PostMapping("/createShift")
     public ShiftEntity createShift(@RequestBody ShiftEntity shiftentity)
 
