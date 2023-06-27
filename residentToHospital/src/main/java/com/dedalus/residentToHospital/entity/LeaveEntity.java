@@ -1,13 +1,16 @@
 package com.dedalus.residentToHospital.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,7 +26,7 @@ import lombok.Setter;
 public class LeaveEntity {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long leaveId;
 	
 	
@@ -34,9 +37,10 @@ public class LeaveEntity {
 	@Column(nullable=false)
 	private Long numberOfDaysLeave;
 	
-	@ManyToOne
-	@JoinColumn(name="residentId", referencedColumnName="RESIDENTID")
-	public ResidentEntity residentEntity;
+	
+//	@OneToMany(mappedBy = "leaveentity")
+//	private List<ResidentEntity> residentEntity;
+	
 
 
 }

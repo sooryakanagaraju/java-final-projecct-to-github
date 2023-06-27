@@ -10,5 +10,7 @@ public interface loginService {
 	LoginEntity addLogin(LoginEntity login);
 	List<LoginEntity> listLogin();
 	
+	public String welcome();
+	
 	
 }

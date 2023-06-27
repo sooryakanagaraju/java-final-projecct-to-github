@@ -19,7 +19,7 @@ import lombok.Setter;
 public class ShiftEntity {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long shiftId;
 	
 
@@ -29,10 +29,8 @@ public class ShiftEntity {
 	@Column(nullable=false)
 	private String residentWard;
 	
-	@ManyToOne
-	@JoinColumn(name="residentId", referencedColumnName="RESIDENTID")
-	public ResidentEntity residentEntity;
-
+//	@OneToMany(mappedBy = "shiftentity")
+//	private List<ResidentEntity> residentEntity;
 	
 	
 

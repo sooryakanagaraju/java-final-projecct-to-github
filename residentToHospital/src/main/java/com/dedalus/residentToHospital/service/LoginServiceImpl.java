@@ -30,6 +30,11 @@ public class LoginServiceImpl implements loginService {
 		return (List<LoginEntity>) loginrepository.findAll();
 	}
 	
+	public String welcome()
+	{
+		return "Welcome";
+	}
+	
 	
 
 }

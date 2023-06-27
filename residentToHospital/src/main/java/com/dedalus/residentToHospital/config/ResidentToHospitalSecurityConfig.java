@@ -27,7 +27,7 @@ public class ResidentToHospitalSecurityConfig {
 	
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.authorizeHttpRequests().requestMatchers("api/residents/**","api/hospitals/**","listlogin/**").authenticated().requestMatchers("api/leave/**","api/login/**").permitAll().requestMatchers("/v2/api-docs",
+		http.authorizeHttpRequests().requestMatchers("api/residents/**","api/hospitals/**","/listHospital/**").authenticated().requestMatchers("api/leave/**","listlogin/**","/api/login/**","/api/shift/**").permitAll().requestMatchers("/v2/api-docs",
                 "/v3/api-docs/**",
                 "/swagger-resources/configuration/ui",
                 "/swagger-resources/configuration/security",

@@ -6,6 +6,7 @@ import java.util.List;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinColumns;
@@ -28,9 +29,8 @@ import lombok.Setter;
 public class ResidentEntity {
 
 
-
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long residentId;
 	
 	@Column(nullable=false)
@@ -45,20 +45,29 @@ public class ResidentEntity {
 	@Column(nullable = false)
 	private String residentGender;
 	
-	@Column
+	@Column(nullable=false,unique=true)
 	private String residentContactno;
 	
 	@Column
 	private String residentEmail;
+	
+	@Column
+	private char activeind;
 	
 	@ManyToOne
 	@JoinColumn(name="hospitalId" , referencedColumnName = "HOSPITALID")
 	public HospitalEntity hospital;
 	
 
-	@OneToMany(mappedBy = "residentEntity")
-	private List<ShiftEntity> shiftEntity;
+	@ManyToOne
+	@JoinColumn(name="shiftId" , referencedColumnName = "SHIFTID")
+	public ShiftEntity shiftentity; // one mapping 
 
+	@ManyToOne
+	@JoinColumn(name="leaveId" , referencedColumnName = "LEAVEID")
+	public LeaveEntity leaveentity; // one mapping 
+
+	
 	
 }
 

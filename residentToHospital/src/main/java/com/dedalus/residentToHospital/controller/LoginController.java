@@ -33,11 +33,16 @@ public class LoginController {
 	
 	
 	@GetMapping("/listlogin")
-    public List<LoginEntity> getAllLeave() {
+    public List<LoginEntity> getAllLogin() {
     // TODO Auto-generated method stub
 		return loginservice.listLogin();
+	}
 		
+	@GetMapping("/welcome")
+	public static String welcome()
+	{
+		return "Welcome";
+	}
 	
-	
-}
+
 }
